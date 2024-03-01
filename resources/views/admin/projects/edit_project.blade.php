@@ -49,12 +49,6 @@
 
                     </div>
                     <div class="form-group my-2">
-                        <label for="languages" class="text-white"><strong>Linguaggi di programmazione</strong></label>
-                        <input type="text" name="languages" id="languages" placeholder="languages" required
-                            class="form-control @error('languages') is-invalid @enderror" value="{{ $project->languages }}">
-
-                    </div>
-                    <div class="form-group my-2">
                         @if ($project->mockup_image !== null)
                             <img src="{{ asset('/storage/' . $project->mockup_image) }}" alt=""> <br>
                         @endif
@@ -62,6 +56,16 @@
                                 progetto</strong></label>
                         <input type="file" name="mockup_image" id="mockup_image" class="form-control ">
 
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="technology_id" class="text-white"><strong>Seleziona la Technology: </strong></label>
+                        @foreach ($technologies as $technology)
+                            <div class="form-check-inline">
+                                <input type="checkbox" name="technologies[]" id="technologies-{{ $technology->id }}"
+                                    class="form-check-input" value="{{ $technology->id }}">
+                                <label for="" class="form-check-label text-white">{{ $technology->name }}</label>
+                            </div>
+                        @endforeach
                     </div>
                     <div class="form-group mt-4 d-flex justify-content-end">
                         <button type="submit" class="btn btn-success">Save</button>

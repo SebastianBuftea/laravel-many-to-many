@@ -88,7 +88,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit_project', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit_project', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -117,6 +118,11 @@ class ProjectController extends Controller
         $project->slug = $slug;
         $project->type_id = $form_data['type_id'];
         $project->update();
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($form_data['technologies']);
+        }
+
         return redirect()->route('admin.projects.index');
     }
 
@@ -128,6 +134,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        /* $project->technologies()->sync([]);  
+        se non avessi usato cascade on delete avrei dovuto fare cosi*/
+
         if ($project->mockup_image != null) {
             Storage::disk('public')->delete($project->mockup_image);
         }

@@ -26,7 +26,6 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => 'required|max:100',
             'description' => 'required',
-            'languages' => 'required',
         ];
     }
 
@@ -36,7 +35,6 @@ class UpdateProjectRequest extends FormRequest
             'title.required' => 'Titolo del progetto obbligatorio',
             'title.max' => 'lunghezza massima consentita è di 100 caratteri',
             'description.required' => 'Descrizione obbligatoria',
-            'languages.required' => 'Linguaggio di programmazione obbligatorio',
         ];
     }
 }

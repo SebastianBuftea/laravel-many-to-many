@@ -12,6 +12,16 @@
                     <a href="{{ asset('/storage/' . $project->mockup_image) }}" target="_blanck">visualizza immagine a schermo
                         intero</a>
                 @endif
+
+                {{-- creo la visulizzazione della tabella many to many --}}
+                <p>
+                    <strong>Technologie: </strong>
+                    @forelse ($project->technologies as $technology)
+                        {{ $technology->name }}
+                    @empty
+                        Il progetto non ha tecnologie assegnate
+                    @endforelse
+                </p>
                 <div><strong>Data consegna:</strong> {{ $project->relese_date }}</div>
             </div>
         </div>
