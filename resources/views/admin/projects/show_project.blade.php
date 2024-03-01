@@ -12,7 +12,6 @@
                     <a href="{{ asset('/storage/' . $project->mockup_image) }}" target="_blanck">visualizza immagine a schermo
                         intero</a>
                 @endif
-                <div><strong>Linguaggi utilizzati:</strong> {{ $project->languages }}</div>
                 <div><strong>Data consegna:</strong> {{ $project->relese_date }}</div>
             </div>
         </div>

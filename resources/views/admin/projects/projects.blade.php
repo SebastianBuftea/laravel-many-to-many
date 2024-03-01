@@ -21,7 +21,6 @@
                     <th scope="col">title</th>
                     <th scope="col">description</th>
                     <th scope="col">slug</th>
-                    <th scope="col">languages</th>
                     <th scope="col">relese_date</th>
                     <th scope="col">type</th>
                 </tr>
@@ -33,7 +32,6 @@
                         <td>{{ $project->title }}</td>
                         <td>{{ Str::limit($project->description, 30, '...') }}</td>
                         <td>{{ $project->slug }}</td>
-                        <td>{{ $project->languages }}</td>
                         <td>{{ $project->relese_date }}</td>
                         <td>{{ $project->type ? $project->type->name : 'senza type' }}</td>
                         <td class=" width_ d-flex">

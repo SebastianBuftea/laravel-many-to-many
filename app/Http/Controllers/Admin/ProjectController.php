@@ -46,7 +46,6 @@ class ProjectController extends Controller
         $project = new Project();
         $project->title = $form_data['title'];
         $project->description = $form_data['description'];
-        $project->languages = $form_data['languages'];
         $project->relese_date = $form_data['relese_date'];
 
         if ($request->hasFile('mockup_image')) {
@@ -96,7 +95,6 @@ class ProjectController extends Controller
         $form_data = $request->all();
         $project->title = $form_data['title'];
         $project->description = $form_data['description'];
-        $project->languages = $form_data['languages'];
         $project->relese_date = $form_data['relese_date'];
         if ($request->hasFile('mockup_image')) {
 
