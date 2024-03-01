@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -31,7 +32,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create_project', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create_project', compact('types', 'technologies'));
     }
 
     /**
@@ -51,12 +53,18 @@ class ProjectController extends Controller
         if ($request->hasFile('mockup_image')) {
             $path = Storage::disk('public')->put('project_image', $form_data['mockup_image']);
             $form_data['mockup_image'] = $path;
+            $project->mockup_image = $form_data['mockup_image'];
         }
-        $project->mockup_image = $form_data['mockup_image'];
+
         $slug = Str::slug($project->title, '-');
         $project->slug = $slug;
         $project->type_id = $form_data['type_id'];
         $project->save();
+
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($form_data['technologies']);
+        }
+
         return redirect()->route('admin.projects.index');
     }
 

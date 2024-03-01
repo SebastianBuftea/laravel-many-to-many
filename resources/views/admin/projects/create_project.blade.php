@@ -59,6 +59,17 @@
 
                     </div>
 
+                    <div class="form-group my-2">
+                        <label for="technology_id" class="text-white"><strong>Seleziona la Technology: </strong></label>
+                        @foreach ($technologies as $technology)
+                            <div class="form-check-inline">
+                                <input type="checkbox" name="technologies[]" id="technologies-{{ $technology->id }}"
+                                    class="form-check-input" value="{{ $technology->id }}">
+                                <label for="" class="form-check-label text-white">{{ $technology->name }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+
                     <div class="form-group mt-4 d-flex justify-content-end">
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
